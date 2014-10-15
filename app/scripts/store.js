@@ -1,0 +1,1 @@
+Openquip.ApplicationAdapter = DS.FixtureAdapter;
