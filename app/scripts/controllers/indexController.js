@@ -1,9 +1,25 @@
 Openquip.IndexController = Ember.ArrayController.extend({
+	itemController: "project",
 	init: function() {
 		this._super();
-		var project = this.store.createRecord("project", {
-			name: "This is a test project!"
+		Ember.run.scheduleOnce('afterRender', this, function() {
+			if (this.get("content.length")===0) {
+				this.send("initDefaultProject");
+			}
 		});
-		this.addObject(project);
+		
+		
+	},
+	onModel: function() {
+		console.log(this.get("content.length"));
+	}.property("length"),
+	actions: {
+		initDefaultProject: function() {
+			var project = this.store.createRecord("project", {
+				name: "This is a test project!"
+			});
+			this.addObject(project);
+			project.save();
+		}
 	}
 });
