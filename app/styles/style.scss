@@ -10,10 +10,42 @@ html, body {
 	width: 100%;
 }
 .navbar-search {
-	margin: 12px;
+	margin: 7px;
 	padding-left: 5px;
+	width: auto;
+	float: left;
 }
 
 .pointer {
 	cursor: pointer;
+}
+
+.session-container {
+	float: right;
+	line-height: 50px;
+}
+.session-container>div{
+	display: inline-block;	
+}
+
+.sign-in-dialog {
+	line-height: normal;
+	padding: 10px;
+	left: auto;
+	right: 5px;
+	top: 15px;
+	width: 200px;
+	display: block;
+}
+.sign-in-container {
+	position: relative;
+
+}
+
+.text-button {
+	text-decoration: underline;
+}
+
+.create-project-button {
+	margin: 10px 0;
 }

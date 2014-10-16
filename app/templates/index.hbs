@@ -1,9 +1,14 @@
+<div class="create-project-button">
+	<button class="btn btn-default" {{action "createProject"}}>Add your own project!</button>
+</div>
 {{#each project in controller}}
 	<div class="well">
-		{{#link-to "project.edit" project}}
-			<span class="glyphicon glyphicon-pencil pointer"></span>
-		{{/link-to}}
-		<span class="glyphicon glyphicon-remove pointer" {{action delete}}></span>
+		{{#if project.canEdit}}
+			{{#link-to "project.edit" project}}
+				<span class="glyphicon glyphicon-pencil pointer"></span>
+			{{/link-to}}
+			<span class="glyphicon glyphicon-remove pointer" {{action delete}}></span>
+		{{/if}}
 		{{project.name}}
 		<span style="float:right;">{{project.platform.name}}</span>
 	</div>

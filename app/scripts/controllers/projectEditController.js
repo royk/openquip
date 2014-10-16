@@ -10,7 +10,11 @@ Openquip.ProjectEditController = Ember.ObjectController.extend({
 	}.observes("platformId"),
 	actions: {
 		save: function() {
-			this.get("model").set("platform", this.get("platformId"));
+			if (!this.get("platformId")) {
+				this.get("model").set("platform", this.get("platforms.firstObject"));
+			} else {
+				this.get("model").set("platform", this.get("platformId"));
+			}
 			this.get("model").save();
 		}
 	}

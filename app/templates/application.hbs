@@ -3,16 +3,36 @@
         <div class="navbar-header">
             <div class="container">
                 <a class="navbar-brand" href="#">OpenQuip</a>
-                <input class="navbar-search" type="text" placeholder="Explore Projects"/>
+                <input class="navbar-search form-control" type="text" placeholder="Explore Projects"/>
+                <div class="session-container">
+                    {{#if signedIn}}
+                        <span>
+                            Signed in as {{iname}}.
+                        </span> 
+                        <div class="pointer text-button" {{action "signOut"}}>Sign Out</div>
+                    {{else}}
+                    <div class="pointer text-button" {{action "toggleSignIn"}}>Sign In</div>
+                    <div class="sign-in-container">
+                        {{#if dialogOpen}}
+                            <div class="sign-in-dialog popover">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    {{input classNames="form-control" valueBinding="signInName"}}
+                                </div>
+                                <button class="btn btn-default" {{action "signIn"}}>Sign in</button>
+                            </div>
+                        {{/if}}
+                    </div>
+                {{/if}}
             </div>
-        </div>
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            </div>
+
         </div>
     </nav>
     <div class="container" id="main">
         <div class="row">
             <div>
-                <div class="col-md-11">
+                <div class="col-md-12">
                     {{outlet}}
                 </div>
             </div>

@@ -1,5 +1,9 @@
 Openquip.IndexController = Ember.ArrayController.extend({
 	itemController: "project",
+	needs: ["application"],
+	signedIn: function() {
+		return this.get("controllers.application.signedIn");
+	}.property("controllers.application.signedIn"),
 	init: function() {
 		this._super();
 		// this.store.createRecord("platform", {name: "Web"}).save();
@@ -23,6 +27,21 @@ Openquip.IndexController = Ember.ArrayController.extend({
 			});
 			this.addObject(project);
 			project.save();
+		},
+		createProject: function() {
+			if (!this.get("signedIn")) {
+				this.get("controllers.application").send("openDialog");
+			} else {
+				var project = this.store.createRecord("project", {
+					user: this.get("controllers.application.model"),
+					name: "",
+					description: ""
+				});
+				project.save().then((function(record) {
+					this.transitionToRoute("project.edit", record);
+				}).bind(this));
+			}
+
 		}
 	}
 });

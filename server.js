@@ -6,9 +6,13 @@ server = fortune(options).
 resource("project", {
 	name: String,
 	description: String,
-	platform: 'platform'
+	platform: 'platform',
+	user: "user"
 }).
 resource("platform", {
 	name: String
-});
+}).
+resource("user", {
+	name: String
+})
 exports = module.exports = server;
