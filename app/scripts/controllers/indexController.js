@@ -2,6 +2,9 @@ Openquip.IndexController = Ember.ArrayController.extend({
 	itemController: "project",
 	init: function() {
 		this._super();
+		// this.store.createRecord("platform", {name: "Web"}).save();
+		// this.store.createRecord("platform", {name: "Mobile"}).save();
+		// this.store.createRecord("platform", {name: "Desktop"}).save();
 		Ember.run.scheduleOnce('afterRender', this, function() {
 			if (this.get("content.length")===0) {
 				this.send("initDefaultProject");

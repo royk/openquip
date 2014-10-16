@@ -4,6 +4,11 @@ var options = {
 };
 server = fortune(options).
 resource("project", {
+	name: String,
+	description: String,
+	platform: 'platform'
+}).
+resource("platform", {
 	name: String
 });
 exports = module.exports = server;
